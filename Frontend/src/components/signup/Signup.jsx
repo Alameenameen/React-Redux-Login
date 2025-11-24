@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import api from "../../utils/Api";
 import {useNavigate} from 'react-router-dom';
 import {toast , Toaster} from "sonner";
-import '../../assets/Styles/Signup.css';
+import '../../assets/Styles/Signup.css'
 
 
 export default function Signup(){

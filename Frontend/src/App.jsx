@@ -1,13 +1,109 @@
 import React from "react";
-import {Routes ,Route} from "react-router-dom";
-import SignUp from "./components/signup/Signup"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { UserProtect, UserLoginProtect } from "../secure/userProtect";
+import SignUp from "./components/signup/Signup";
+import Login from "./components/Login/Login";
+// import Home from "./pages/userHome/Home";
+// import UserProfile from "./components/userProfile/UserProfile";
+// import EditProfile from "./components/EditProfile/EditProfile";
+// import AdminLogin from "./pages/admin/adminLogin/AdminLogin";
+// import AdminHome from "./pages/admin/adminHome/AdminHome";
+// import Dashboard from "./pages/admin/adminDash/Dashboard";
+// import AddUser from "./pages/admin/adminADD/AddUser";
+// import { AdminProtect, AdminLoginProtect } from "./secure/AdminProtect";
+// import NotFoundError from "./pages/Error/ErrorNotfound";
+// import ListComp from "./ListComp";
 
+const App = () => {
+  return (  
+    <>  
 
-export default function App(){
-    return (
-        <Routes>
-            {/* signup route for calling frontend */}
-            <Route path="/signup" element={<SignUp/>}/>
-        </Routes>
-    )
-}
+    
+    <Router>
+      <Routes>
+        {/* user routess  */}
+        <Route
+          path="/signup"
+          element={
+            <UserLoginProtect>
+              <SignUp />
+            </UserLoginProtect>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <UserLoginProtect>
+              <Login />
+            </UserLoginProtect>
+          }
+        />
+        {/* <Route
+          path="/home"
+          element={
+            <UserProtect>
+              <Home/>
+            </UserProtect>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <UserProtect>
+              <UserProfile />
+            </UserProtect>
+          }
+        />
+        <Route
+          path="/edit"
+          element={
+            <UserProtect>
+              <EditProfile />
+            </UserProtect>
+          }
+        />
+
+        {/* admin routes  */}
+        {/* <Route
+          path="/admin/login"
+          element={
+            <AdminLoginProtect>
+              <AdminLogin />
+            </AdminLoginProtect>
+          }
+        />
+        <Route
+          path="/admin/home"
+          element={
+            <AdminProtect>
+              <AdminHome />
+            </AdminProtect>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminProtect>
+              <Dashboard />
+            </AdminProtect>
+          }
+        />
+        <Route
+          path="/admin/adduser"
+          element={
+            <AdminProtect>
+              <AddUser />
+            </AdminProtect>
+          }
+        />
+        {/* <Route path="/list" element={<UserProtect><ListComp/></UserProtect>}/> */}
+        {/* error  */}
+        {/* <Route path="*" element={<NotFoundError />} /> */} 
+      </Routes>
+    </Router>
+    </>
+  );
+
+};
+
+export default App;
