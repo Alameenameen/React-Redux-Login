@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { UserProtect, UserLoginProtect } from "../secure/userProtect";
 import SignUp from "./components/signup/Signup";
 import Login from "./components/Login/Login";
-// import Home from "./pages/userHome/Home";
+import Home from "./pages/Home";
 // import UserProfile from "./components/userProfile/UserProfile";
 // import EditProfile from "./components/EditProfile/EditProfile";
 // import AdminLogin from "./pages/admin/adminLogin/AdminLogin";
@@ -38,7 +38,7 @@ const App = () => {
             </UserLoginProtect>
           }
         />
-        {/* <Route
+        <Route
           path="/home"
           element={
             <UserProtect>
@@ -46,7 +46,7 @@ const App = () => {
             </UserProtect>
           }
         />
-        <Route
+        {/* <Route
           path="/profile"
           element={
             <UserProtect>
@@ -61,7 +61,7 @@ const App = () => {
               <EditProfile />
             </UserProtect>
           }
-        />
+        /> */}
 
         {/* admin routes  */}
         {/* <Route
