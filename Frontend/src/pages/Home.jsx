@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { User, LogOut, Home } from 'lucide-react';
 import '../assets/Styles/Home.css'
+import {logout} from '../redux/slice/userSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -11,8 +14,12 @@ const HomePage = () => {
     avatar: 'JD'
   };
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const handleLogout = () => {
-    alert('Logging out...');
+    dispatch(logout());
+    navigate('/');
   };
 
   const handleProfile = () => {
@@ -50,7 +57,7 @@ const HomePage = () => {
                 </div>
                 
                 <button onClick={handleProfile} className="dropdown-item">
-                  <User className="dropdown-icon" />
+                  <User className="dropdown-icon" /> 
                   <span>Profile</span>
                 </button>
                 
