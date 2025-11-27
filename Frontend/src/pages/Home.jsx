@@ -2,20 +2,26 @@ import React, { useState } from 'react';
 import { User, LogOut, Home } from 'lucide-react';
 import '../assets/Styles/Home.css'
 import {logout} from '../redux/slice/userSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  
-  const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    avatar: 'JD'
-  };
 
+
+
+  const user = useSelector((state)=>state.auth?.user) || {};
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+
+
+    const getInitials = (name) => {
+    if (!name) return '';
+    const parts = name.trim().split(' ').filter(Boolean);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  };
 
   const handleLogout = () => {
     dispatch(logout());
