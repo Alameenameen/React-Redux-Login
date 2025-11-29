@@ -4,6 +4,7 @@ import '../assets/Styles/Home.css'
 import {logout} from '../redux/slice/userSlice';
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import api from '../utils/Api'
 
 const HomePage = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -11,6 +12,8 @@ const HomePage = () => {
 
 
   const user = useSelector((state)=>state.auth?.user) || {};
+  console.log('redux user:', user);
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -23,9 +26,13 @@ const HomePage = () => {
     return (parts[0][0] + parts[1][0]).toUpperCase();
   };
 
-  const handleLogout = () => {
+
+ const ProfilePic = user.profilePicture
+
+  const handleLogout = async() => {
     dispatch(logout());
-    navigate('/');
+    await api.post("auth/logout")
+    navigate('/login');
   };
 
   const handleProfile = () => {
@@ -50,8 +57,16 @@ const HomePage = () => {
               onClick={() => setShowProfileMenu(!showProfileMenu)}
               className="profile-button"
             >
-              <div className="avatar">{user.avatar}</div>
-              <span className="user-name">{user.name}</span>
+              <div className="avatar">
+                  {ProfilePic ? (
+                <img
+                  src={ProfilePic}
+                  alt={getInitials()}
+                  className="avatar-img"
+                />
+              ) : null}
+              </div>
+              
             </button>
 
             {/* Dropdown Menu */}

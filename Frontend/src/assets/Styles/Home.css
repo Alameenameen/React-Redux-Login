@@ -66,16 +66,19 @@
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  background-color: #2563eb;
-  border-radius: 50%;
+  width: 40px; /* or whatever size you want */
+  height: 40px;
+  border-radius: 50%; /* makes it circular */
+  overflow: hidden; /* crops the image to fit */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 0.875rem;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is the key property - ensures image fills the container */
 }
 
 .user-name {

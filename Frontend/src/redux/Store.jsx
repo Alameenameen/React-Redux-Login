@@ -10,6 +10,7 @@ import { authSlice } from "./slice/userSlice";
 
 import userReducer from "./slice/userSlice";
 // import adminReducer from "./slice/AdminSlice";
+console.log(userReducer)
 
 const authPersistConfig ={
     key:'auth',
@@ -46,6 +47,8 @@ const Store = configureStore({
       },
     }),
 });
+
+
 
 export const persistor = persistStore(Store)
 export default Store

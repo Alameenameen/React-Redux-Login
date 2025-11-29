@@ -47,6 +47,7 @@ const Login = () => {
         try {
             const response = await api.post('/auth/login',formData)
             const user = response.data.user
+            console.log(user)
             dispatch(login({user}))
             toast.success('Login Successful')
             navigate('/home')
