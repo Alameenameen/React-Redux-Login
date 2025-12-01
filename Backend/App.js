@@ -6,6 +6,7 @@ const connectDB = require("./config/db"); // your DB connector
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const authRoutes = require('./Routes/AuthRoutes');
+const userRoute = require('./Routes/userRoutes')
 
 
 
@@ -34,7 +35,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 
 // app.post("/auth/signup", upload.single("profilePicture"), AuthController.Signup);
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes)
+app.use('/user',userRoute)
 
 // connect DB & start server
 const PORT = process.env.PORT || 5000;
